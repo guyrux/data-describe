@@ -1,0 +1,16 @@
+site_name: Data Describe
+repo_url: https://github.com/guyrux/data-describe
+repo_name: Data Describe
+
+theme:
+  name: material
+  language: pt-BR
+  logo: assets/icon.png
+  favicon: assets/icon.png
+
+markdown_extensions:
+  - attr_list
+
+extra_css:
+  - stylesheets/extra.css
+

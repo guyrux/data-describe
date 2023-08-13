@@ -34,3 +34,21 @@ per-file-ignores = [
     '__init__.py:F401',
 ]
 max-line-length = 79
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = "--doctest-modules"
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.coverage.html]
+directory = "docs/htmlcov/"
+
+[tool.taskipy.tasks]
+lint = "blue --check --diff data_describe/ && isort --check --diff data_describe/"
+docs = "mkdocs serve"
+pre_test = "task lint"
+test = "pytest -s -x --cov=data_describe -vv"
+post_test = "coverage html"
