@@ -193,3 +193,5 @@ docs/cov_html
 
 # VSCode configurations
 .vscode
+
+*.xls*
