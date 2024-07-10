@@ -62,7 +62,7 @@ def cardinalidade(df):
 
     for coluna in df_temporario.columns:
 
-        if dtype(df_temporario[coluna]) not in [float, 'float32', 'float64']:
+        if dtype(df_temporario[coluna]) not in [float, 'float32', 'float64', int, 'int32', 'int64']:
             df_temporario.loc[df_temporario[coluna].isna(), coluna] = 'NaN'
             proporcao_nulos = len(df_temporario.loc[df_temporario[coluna] == 'NaN']) / len(df_temporario)
             dct_cardialidade[coluna] = {
