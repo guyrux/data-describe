@@ -60,7 +60,7 @@ def cardinalidade(df):
     df_temporario = df.copy()
     dct_cardialidade = {}
 
-    for coluna in df_temporario.columns:
+    for i, coluna in enumerate(df_temporario.columns):
 
         if dtype(df_temporario[coluna]) not in [float, 'float32', 'float64', int, 'int32', 'int64']:
             df_temporario.loc[df_temporario[coluna].isna(), coluna] = 'NaN'
@@ -82,7 +82,7 @@ def cardinalidade(df):
             else:
                 valores = [df_temporario[coluna].min(), df_temporario[coluna].max()]
 
-            dct_cardialidade[coluna] = {
+            dct_cardialidade[i] = {
                 "Atributo": coluna,
                 "DType": dtype(df_temporario[coluna]),
                 "Cardinalidade": len(sorted(df_temporario[coluna].unique())),  # cardinalidade_n,
@@ -145,5 +145,3 @@ if __name__ == '__main__':
     breve_descricao(df)
 
     display(cardinalidade(df))
-    
-# %%
