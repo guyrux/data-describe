@@ -1,3 +1,4 @@
+# %%
 from typing import Union
 
 import matplotlib.pyplot as plt
@@ -5,7 +6,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from utils import clean_data
+from data_describe.utils import clean_data
 
 
 def describing_continuous_data(
