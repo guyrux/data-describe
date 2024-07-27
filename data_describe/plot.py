@@ -54,7 +54,7 @@ def plot_histogram(
     plt.figure(figsize=(6, 2))
     sns.histplot(data=df, x=column, bins=50, kde=True)
 
-    if isinstance(pivot, dict):
+    if isinstance(pivot, tuple):
         pivot_str = f'{str(pivot[0])}: {pivot[1]:.2f}'
         pivot_value = float(pivot[1])
     else:
