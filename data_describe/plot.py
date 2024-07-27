@@ -1,4 +1,5 @@
 # %%
+import os
 from typing import Union
 
 import matplotlib.pyplot as plt
@@ -6,11 +7,17 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-from data_describe.utils import clean_data
+
+if __name__ == '__main__':
+    from utils import clean_data
+else:
+    from data_describe.utils import clean_data
 
 
 def describing_continuous_data(
-    df: pd.DataFrame, lst_columns: Union[list[str], str], cleaning_data: bool = True
+    df: pd.DataFrame,
+    lst_columns: Union[list[str], str],
+    cleaning_data: bool = True,
 ):
     """Describe a pd.DataFrame in each column within a given list.
 
@@ -32,7 +39,13 @@ def describing_continuous_data(
             ]
 
         df_temp = pd.concat(
-            [df_temp, dct_temp[column].describe(percentiles=[5, 95]).T.reset_index()], axis=0
+            [
+                df_temp,
+                dct_temp[column]
+                .describe(percentiles=[0.05, 0.25, 0.75, 0.95])
+                .T.reset_index(),
+            ],
+            axis=0,
         )
 
     return df_temp
@@ -55,11 +68,11 @@ def plot_histogram(
     sns.histplot(data=df, x=column, bins=50, kde=True)
 
     if isinstance(pivot, tuple):
-        pivot_str = f'{str(pivot[0])}: {pivot[1]:.2f}'
         pivot_value = float(pivot[1])
+        pivot_str = f'{str(pivot[0])}: {pivot[1]:.2f}'
     else:
-        pivot_str = f'pivot: {pivot:.2f}'
         pivot_value = float(pivot)
+        pivot_str = f'pivot: {pivot:.2f}'
 
     plt.axvline(x=pivot_value, color='red', linestyle='--', linewidth=1)
     plt.text(
@@ -72,3 +85,19 @@ def plot_histogram(
     )
     plt.show()
     return None
+
+
+if __name__ == '__main__':
+    df = pd.DataFrame.from_dict(
+        {
+            'a': np.random.normal(500, 200, 1000),
+            'b': np.random.uniform(0, 1, 1000),
+            'c': np.random.poisson(250, 1000),
+        }
+    )
+
+    df_temp = describing_continuous_data(df=df, lst_columns=['a', 'b', 'c'])
+    display(df_temp)
+
+    column = 'a'
+    plot_histogram(df=df, column=column, pivot=('Mean', df[column].mean()))
