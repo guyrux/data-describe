@@ -9,6 +9,8 @@ packages = [{include = "data_describe"}]
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
 scipy = "^1.11.2"
+pandas = "^2.2.2"
+seaborn = "^0.13.2"
 
 
 [tool.poetry.group.dev.dependencies]

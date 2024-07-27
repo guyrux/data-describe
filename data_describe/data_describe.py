@@ -137,11 +137,11 @@ def r2_ajustado(x, y, y_pred):
 
 
 if __name__ == '__main__':
-    df = pd.DataFrame({
+    df_test = pd.DataFrame({
         'a': [1, 2, 3], 'b': ['a', 'b', 'c'], 'c': [1.23, 0.987, 123.5],
         'd': [0.001, 0.001, 0.001]
         })
 
-    breve_descricao(df)
+    breve_descricao(df_test)
 
-    display(cardinalidade(df))
+    cardinalidade(df_test).head(10)
