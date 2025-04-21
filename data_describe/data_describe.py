@@ -69,7 +69,7 @@ def cardinalidade(df):
                 "Atributo": coluna,
                 "DType": dtype(df_temporario[coluna]),
                 "Cardinalidade": len(df_temporario[coluna].unique()),
-                "Valores": sorted(df_temporario[coluna].unique()),
+                "Valores": sorted(df_temporario[coluna].astype(str).unique()),
                 "Proporção Nulos": proporcao_nulos
             }
 
